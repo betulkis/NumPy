@@ -1,0 +1,512 @@
+pip install numpy
+anacondada conda install numpy
+
+
+import numpy as np
+np olarak tanımladık
+
+sürümü kontrol et:
+print(np.__version__)
+
+------------------
+NumPy dizileri, bir matris gibi düşünülebilir. Her bir boyut, dizinin bir eksenidir.
+Örneğin, 2D bir dizi (matris) için, birinci eksen satırları, ikinci eksen ise sütunları temsil eder.
+
+import numpy as np
+
+a = np.array([[1, 2, 3], [4, 5, 6]])
+
+Bu durumda, a adlı NumPy dizisi şu şekildedir:
+
+[[1, 2, 3],
+ [4, 5, 6]]
+
+Bu matrisin şekli (2, 3) olarak ifade edilir. *****
+
+ 2 satır ve her satırda 3 öğe içeren bir matrisi ifade eder. 
+Birinci boyut (ilk sayı): 2 - Bu, dizinin kaç satırdan oluştuğunu gösterir.
+İkinci boyut (ikinci sayı): 3 - Bu, dizinin her satırda kaç öğeden oluştuğunu gösterir.
+-----------------------
+
+dizi oluştur ve yazdır
+a = np.array( [1,2,3] )
+print(a)
+---------------------
+print(a.shape)      ******
+
+çıktı
+
+(3, )
+
+dizinin boyutları hakkında bilgi sağlar
+-------------------------
+data type veri tipini verir
+print(a.dtype)
+int64
+------------------------
+print(a.ndim)
+
+bir NumPy dizisinin boyut sayısını (dimension) döndürür. 
+Boyut, bir dizinin içinde kaç eksen olduğunu belirtir.
+
+import numpy as np
+
+a = np.array([1, 2, 3])
+print(a.ndim)
+
+a adlı NumPy dizisi 1 boyutlu bir vektör olduğundan, print(a.ndim) ifadesi 1 değerini döndürecektir.
+_________
+import numpy as np
+
+a = np.array([[1, 2, 3], [4, 5, 6]])
+print(a.ndim)
+
+çıktı 2
+2 boyutlu bir matris çünkü
+------------------------------
+NumPy dizisinin içindeki toplam öğe sayısını (eleman sayısı) döndürür.
+
+print(a.size)
+-------------------------
+her ögenin boyutunu byte cinsinden döndür
+
+print(a.itemsize)
+-------------------------
+
+print(a[0])
+
+0 dizini ilk ögeyi yazdırır 
+
+import numpy as np
+
+a = np.array([1, 2, 3])
+print(a[0])
+
+çıktı 1
+
+NumPy dizilerinde indeksleme 0'dan başlar, yani ilk elemanın indeksi 0'dır.
+Eğer a dizisinin ikinci elemanını almak isteseydiniz, print(a[1]) kullanılırdı.
+
+-------------------------
+import numpy as  np
+a = np.array( [1,2,3,4] )
+
+a[0] = 10   ( olarak tanımlayıp )
+print(a)  ( dizimizi tekrar yazdırırsak ilk öge artık 10 )
+
+çıktı
+[10  2  3  4]
+
+--------------------------
+
+a = np.array( [1,2,3] )
+
+b = a * np.array( [2,0,2] )
+print(b)
+
+[2 0 6]
+
+a dizisinin elemanları ile [2, 0, 2] vektörünün elemanları arasındaki çarpım sonuçlarını gösterir. 
+İlk eleman: 1 * 2 = 2, ikinci eleman: 2 * 0 = 0, üçüncü eleman: 3 * 2 = 6
+*********************************************************************************
+
+NumPy dizileri ve Python listeleri
+
+
+python list ve numpy array
+
+l = [1,2,3]    list
+
+a = np.array( [1,2,3] )    array
+
+listeyi ve numy diziyi yazdır
+
+print(l)
+print(a)
+
+[1, 2, 3]
+[1 2 3]
+
+-----------------------
+listede eleman eklerken
+
+l.append(4)     bu np arrayde olmaz hata verir
+
+l = l + [4]     bu ise list de 4  elemanını eklerken
+                    a = a + np.array( [4] )
+                    a = a + np.array( [4,4,4] )
+                    numpy arreyde her elemana 4 ekler ve 
+                    sonucu  [5 6 7] yapar 
+
+--------------------
+l = [1,2,3]    list
+
+a = np.array( [1,2,3] )    array
+
+
+l = l *2
+print(l)
+
+çıktı
+
+[1, 2, 3, 1, 2, 3]  
+
+
+a = a * 2
+print(a)
+ 
+çıktı
+
+[2  4  6]
+
+----------------------
+a = np.sqrt(a)
+
+a adlı NumPy dizisinin her bir elemanının karekökü alınıyor ve sonuç a dizisinin üzerine yazılıyor
+
+import numpy as np
+
+a = np.array([1, 2, 3])
+a = np.sqrt(a)
+
+print(a)
+çıktı
+[1.         1.41421356 1.73205081]
+
+-----------------
+
+a = np.log(a)
+print(a)
+
+ her bir elemanının doğal logaritması (ln veya log) alınıyor ve sonuç a dizisinin üzerine yazılıyor
+ ln(1) = 0 .....
+
+****************************************************************************************
+dot product
+
+
+import numpy as np
+
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+dot_product = np.dot(a, b)
+# Alternatif olarak: dot_product = a.dot(b)
+
+print(dot_product)
+
+Bu kod, a ve b adlı iki vektör arasındaki nokta çarpımını hesaplar. Eğer bu kodu çalıştırırsanız, çıktı olarak 32 göreceksiniz. 
+Bu, a ve b vektörlerinin elemanları arasındaki çarpımların toplamını ifade eder:
+
+1⋅4+2⋅5+3⋅6=32
+---------------------------
+l1 = [1, 2, 3]
+l2 = [4, 5, 6]
+
+dot = 0
+for  i  in  range(len(l1)):
+       dot += l1 [i] * l2[i]
+print(dot)
+
+list çok kodla ve yavaş
+______
+
+l1 = [1, 2, 3]
+l2 = [4, 5, 6]
+a1 = np.array(l1)
+a2 = np.array(l2)
+
+dot = np.dot(a1,a2) 
+print(dot)
+-----------
+import numpy as np
+
+a1 = np.array([1, 2, 3])
+a2 = np.array([4, 5, 6])
+
+dot_product = np.dot(a1, a2)
+print(dot_product)
+
+veyaa
+ kendiniz hesaplamaya çalış
+
+sum1 = a1 * a2
+dot = np.sum(sum1)
+print(dot)
+----------
+dot = a1 @ a2
+print(dot)
+
+@ sembolü de NumPy'de matris çarpımını (dot product) ifade eder. Dolayısıyla, a1 @ a2 ifadesi, np.dot(a1, a2) ifadesiyle aynı işlemi gerçekleştirir. 
+İki vektör arasındaki nokta çarpımını hesaplamak için kullanabilirsin
+***********************************************************************************************
+speed test array vs list
+
+
+NumPy dizileri ve Python listeleri arasındaki hız farkını görmek için basit bir hız testi yapabiliriz. NumPy dizileri genellikle büyük veri setleri üzerinde daha hızlıdır çünkü C dilinde yazılmış altında yatan optimize edilmiş kodları kullanır
+
+matematiksel işlemler numpy de daha hızlı
+*********************************************************************************************
+
+multidimensional (nd) arrays
+
+
+a = np.array( [ [ 1,2,6], [3,4,8] ] )
+print(a.shape)
+
+(2, 3)
+satır sütun
+
+
+a = np.array( [ [ 1,2,6], [3,4,8] ] )
+print(a)
+
+[ [ 1,2,6]
+    [3,4,8] ]
+
+
+-----
+print( a [ : , 0  ] )
+
+
+a = np.array([[1, 2, 6], [3, 4, 8]])
+print( a [ : , 0  ] )   her katmanın ilk sütununu seçer ***
+çıktı
+[1 3]
+
+-------------
+
+print( a [ 0 , :  ] )
+
+
+a[0, :], belirtilen indeksteki satırın tüm sütunlarını seçer.
+
+Bu, belirtilen indeksteki (0'ıncı indeks) satırın tüm sütunlarını seçer
+
+[ 1,2,6] çıktı
+
+-------------
+köşegen matris
+
+print(np.diag(a))
+*********************************************************************
+indexing -slicing-boolean indexing
+
+
+indeksleme:
+İndeksleme, NumPy dizilerinin belirli elemanlarına veya alt dizilerine erişim sağlamak için kullanılan güçlü bir araçtır. 
+
+
+import numpy as np
+
+a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+
+1 2 3
+4 5 6
+7 8 9
+
+Belirli bir elemana erişim (örneğin, 2. satırın 1. sütunu):
+eleman = a[1, 0]
+print(eleman)
+ çıktı 4
+
+ İlk indeks olan 1, 0'dan başlamak üzere ikinci satırı temsil eder. İkinci indeks olan 0, 0'dan başlamak üzere birinci sütunu temsil eder.
+
+
+Belirli bir satıra erişim:
+
+satir = a[1, :]
+print(satir)
+Çıktı: [4 5 6]
+
+Belirli bir sütuna erişim:
+
+sutun = a[:, 2]
+print(sutun)
+Çıktı: [3 6 9]
+
+Alt bir diziye erişim (örneğin, 0-1 satırları ve 1-2 sütunları içeren bir alt dizi):
+
+alt_dizi = a[0:2, 1:3]
+print(alt_dizi)
+çıktı
+[[2 3]
+ [5 6]]
+
+-----------
+Slicing (dilimleme), NumPy dizilerinde belirli bir aralıktaki elemanlara erişim sağlama yöntemidir. Dilimleme, dizinin belirli bir alt kümesini seçmek için kullanılır. 
+
+# Belirli bir alt dizi al (örneğin, 1. ve 2. satırlar, 1. ve 2. sütunlar)
+alt_dizi = a[0:2, 0:2]
+print("Alt dizi:\n", alt_dizi)
+
+
+ Satır dilimleme a[1, :] ifadesi ile 2. satırı, sütun dilimleme a[:, 0] ifadesi ile 1. sütunu seçeriz
+----------
+Boolean indexing,
+NumPy dizilerinde belirli bir koşulu sağlayan elemanları seçmek için kullanılan bir tekniktir.
+ Bu, bir NumPy dizisinin her elemanı için bir boolean (True/False) değerine karşılık gelen bir koşul ifadesi oluşturarak, bu koşulu sağlayan elemanları seçmenizi sağlar.
+Boolean indexing, veri filtreleme ve seçme için güçlü bir araçtır. Bu yöntemi kullanarak diziler üzerinde koşullu işlemler gerçekleştirebilir ve istediğiniz veriyi hızlıca seçebilirsiniz.
+
+
+import numpy as np
+
+a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+print("Dizi:\n", a)
+
+
+# Koşulu belirle (örneğin, 5'ten büyük olanları seçelim)
+kosul = a > 5
+
+# Boolean indexing ile seçim yap
+secilenler = a[kosul]
+
+print("Koşulu sağlayan elemanlar:\n", secilenler)
+
+
+Koşulu sağlayan elemanlar:
+ [6 7 8 9]
+
+
+---****
+a = np.array ( [ [1,2] , [3,4], [5,6] ] )
+print(a)
+
+bool_ idx = a>2
+print(bool_idx)
+print(a [bool_idx] )         ""bunun çıktısı da [3 4 5 6 ] olur""
+
+
+[ [ 1 2]
+    [3 4] 
+     [5 6] ]
+
+[ [False False ]
+   [True True  ]
+   [True True ] ]
+
+böyle uzunca değilde tek satırda 2den büyük değerleri döndürmek için 
+print(a[a > 2])
+yazılır 
+
+
+Reshaping
+
+NumPy'de reshape() fonksiyonu, bir dizinin şeklini değiştirmek için kullanılır. Bu işlem, dizinin elemanlarını değiştirmeden, sadece şeklini düzenleyerek gerçekleşir. Yani, aynı elemanlara sahip yeni bir dizi oluşturulmuş olur.
+
+import numpy as np
+
+a = np.array([[1, 2, 3], [4, 5, 6]])
+
+Bu, 2x3'lük bir matrisi temsil eder:
+1 2 3
+4 5 6
+
+Şimdi, reshape() kullanarak bu diziyi farklı bir şekle dönüştürelim:
+
+b = a.reshape((3, 2))
+print(b)
+
+Bu, 3x2'lik yeni bir matris oluşturacaktır:
+
+1 2
+3 4
+5 6
+*********
+concatenation
+NumPy'de concatenation (birleştirme), iki veya daha fazla diziyi birleştirerek yeni bir dizi oluşturma işlemidir. Bu işlem, numpy.concatenate() fonksiyonu veya numpy.vstack() (dikey birleştirme) ve numpy.hstack() (yatay birleştirme) fonksiyonları kullanılarak gerçekleştirilebilir.
+
+import numpy as np
+
+a = np.array([[1, 2], [3, 4]])
+b = np.array([[5, 6]])
+
+# numpy.concatenate() kullanarak dikey birleştirme
+c = np.concatenate((a, b), axis=0) ***
+# veya
+c = np.vstack((a, b))
+
+çıktı
+1 2
+3 4
+5 6
+
+
+
+# numpy.concatenate() kullanarak yatay birleştirme
+d = np.concatenate((a, b.T), axis=1)
+# veya
+d = np.hstack((a, b.T))
+
+çıktı
+1 2 5
+3 4 6
+
+axis parametresi, birleştirme işleminin hangi eksen boyunca yapılacağını belirtir. Dikey birleştirme için axis=0, yatay birleştirme için axis=1 kullanılmıştır.
+
+****
+import numpy as np
+
+# Broadcasting örneği
+a = np.array([1, 2, 3])
+b = 2
+result = a + b
+print(result)  # [3, 4, 5]
+
+
+import numpy as np
+
+# Toplama işlemi ve axis kullanımı
+a = np.array([[1, 2, 3], [4, 5, 6]])
+result_row = np.sum(a, axis=0)  # Sütunları topla
+result_col = np.sum(a, axis=1)  # Satırları topla
+print( result_row)
+print( result_col)
+
+
+import numpy as np
+
+# Veri tipleri
+a = np.array([1, 2, 3], dtype=np.float64)
+print(a.dtype)  # float64
+
+b = np.array([1, 2, 3], dtype=np.int32)
+print(b.dtype)  # int32
+
+
+Generating Arrays (Diziler Oluşturma): NumPy, farklı metodlar aracılığıyla çeşitli şekillerde diziler oluşturmanıza olanak tanır. np.zeros(), np.ones(), np.arange(), ve np.linspace() gibi fonksiyonlar yaygın olarak kullanılır.
+
+import numpy as np
+
+# Kopyalama işlemleri
+a = np.array([1, 2, 3])
+
+# Referans kopyalama
+b = a
+b[0] = 99
+print(a)  # [99, 2, 3]
+
+# Gerçek kopyalama
+c = a.copy()
+c[1] = 88
+print(a)  # [99, 2, 3]
+print(c)  # [99, 88, 3]
+
+
+Random Numbers (Rastgele Sayılar): NumPy, rastgele sayılar oluşturmak için np.random modülünü içerir. Bu, simülasyonlar, testler ve diğer uygulamalarda rastgele sayıların kullanılmasını sağlar.
+
+import numpy as np
+
+# Rastgele sayılar
+random_array = np.random.rand(2, 3)
+print("Random array:\n", random_array)
+
+
+Loading CSV Files
+
+import numpy as np
+
+# CSV dosyasından veri yükleme
+data = np.loadtxt('data.csv', delimiter=',')
+print("Loaded data:\n", data)
+
